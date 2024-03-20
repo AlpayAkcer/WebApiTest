@@ -33,11 +33,27 @@ namespace WebApiTest.DataAccessLayer.Concrete
             }
         }
 
+        public Hotel GetHotelByCityName(string cityname)
+        {
+            using (var _hotelDbContext = new HotelDbContext())
+            {
+                return _hotelDbContext.Hotels.FirstOrDefault(x => x.City.Contains(cityname));
+            }
+        }
+
         public Hotel GetHotelById(int id)
         {
             using (var _hotelDbContext = new HotelDbContext())
             {
                 return _hotelDbContext.Hotels.Find(id);
+            }
+        }
+
+        public Hotel GetHotelByName(string name)
+        {
+            using (var _hotelDbContext = new HotelDbContext())
+            {
+                return _hotelDbContext.Hotels.FirstOrDefault(x => x.Name.Contains(name));
             }
         }
 

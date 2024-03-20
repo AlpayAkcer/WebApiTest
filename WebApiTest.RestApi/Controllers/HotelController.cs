@@ -45,14 +45,16 @@ namespace WebApiTest.RestApi.Controllers
         //    _hotelService.TDeleteHotel(id);
         //}
         [HttpGet]
-        public IActionResult GetList()
+        [Route("[action]")]
+        public IActionResult GetHotel()
         {
             var hotels = _hotelService.TGetAllHotel();
             return Ok(hotels);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetList(int id)
+        [HttpGet]
+        [Route("[action]/{id}")]
+        public IActionResult GetHotelByID(int id)
         {
             var hotel = _hotelService.TGetHotelById(id);
             if (hotel != null)
@@ -62,8 +64,34 @@ namespace WebApiTest.RestApi.Controllers
             return NotFound();
         }
 
+        [HttpGet]
+        [Route("[action]/{name}")]
+        public IActionResult GetHotelByName(string name)
+        {
+            var hotel = _hotelService.TGetHotelByName(name);
+            if (hotel != null)
+            {
+                return Ok(hotel); //200 + Data Status Code
+            }
+            return NotFound();
+        }
+
+        [HttpGet]
+        [Route("[action]/{cityname}")]
+        public IActionResult GetHotelByCityName(string cityname)
+        {
+            var hotel = _hotelService.TGetHotelByCityName(cityname);
+            if (hotel != null)
+            {
+                return Ok(hotel); //200 + Data Status Code
+            }
+            return NotFound();
+        }
+
+
         [HttpPost]
-        public IActionResult Post([FromBody] Hotel hotel)
+        [Route("[action]")]
+        public IActionResult CreateHotel([FromBody] Hotel hotel)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +102,8 @@ namespace WebApiTest.RestApi.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody] Hotel hotel)
+        [Route("[action]")]
+        public IActionResult UpdateHotel([FromBody] Hotel hotel)
         {
             if (_hotelService.TGetHotelById(hotel.ID) != null)
             {
@@ -83,8 +112,9 @@ namespace WebApiTest.RestApi.Controllers
             return NotFound();
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete]
+        [Route("[action]/{id}")]
+        public IActionResult DeleteHotel(int id)
         {
             if (_hotelService.TGetHotelById(id) != null)
             {

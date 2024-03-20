@@ -28,6 +28,11 @@ namespace WebApiTest.BusinessLayer.Concrete
             return _hotelRepository.GetAllHotel();
         }
 
+        public Hotel TGetHotelByCityName(string cityname)
+        {
+            return _hotelRepository.GetHotelByCityName(cityname);
+        }
+
         public Hotel TGetHotelById(int id)
         {
             if (id > 0)
@@ -35,6 +40,11 @@ namespace WebApiTest.BusinessLayer.Concrete
                 return _hotelRepository.GetHotelById(id);
             }
             throw new Exception("ID değeri 1den küçük olamaz");
+        }
+
+        public Hotel TGetHotelByName(string name)
+        {
+            return _hotelRepository.GetHotelByName(name);
         }
 
         public Hotel TUpdateHotel(Hotel hotel)
