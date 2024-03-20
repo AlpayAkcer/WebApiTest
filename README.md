@@ -1,0 +1,5 @@
+-N Tier Archutecture
+- Entity
+- DataAccess
+- Business
+- Web API
