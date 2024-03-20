@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Identity;
 using WebApiTest.BusinessLayer.Abstract;
 using WebApiTest.BusinessLayer.Concrete;
+using WebApiTest.DataAccessLayer;
 using WebApiTest.DataAccessLayer.Abstract;
 using WebApiTest.DataAccessLayer.Concrete;
+using WebApiTest.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +17,21 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IHotelService, HotelService>();
 builder.Services.AddSingleton<IHotelRepository, HotelRepository>();
+
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<HotelDbContext>();
+builder.Services.Configure<IdentityOptions>(opt =>
+{
+    opt.Password.RequiredLength = 6;
+    opt.Password.RequireLowercase = false;
+    opt.Password.RequireUppercase = false;
+    opt.Password.RequireDigit = false;
+
+    opt.User.RequireUniqueEmail = true;
+    opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+    opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    opt.Lockout.MaxFailedAccessAttempts = 5;
+
+});
 
 var app = builder.Build();
 
