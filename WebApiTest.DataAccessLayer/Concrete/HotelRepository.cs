@@ -1,68 +1,69 @@
-﻿using WebApiTest.DataAccessLayer.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApiTest.DataAccessLayer.Abstract;
 using WebApiTest.Entities;
 
 namespace WebApiTest.DataAccessLayer.Concrete
 {
     public class HotelRepository : IHotelRepository
     {
-        public Hotel CreateHotel(Hotel hotel)
+        public async Task<Hotel> CreateHotel(Hotel hotel)
         {
             using (var _hotelDbContext = new HotelDbContext())
             {
                 _hotelDbContext.Hotels.Add(hotel);
-                _hotelDbContext.SaveChanges();
+                await _hotelDbContext.SaveChangesAsync();
                 return hotel;
             }
         }
 
-        public void DeleteHotel(int id)
+        public async Task DeleteHotel(int id)
         {
             using (var _hotelDbContext = new HotelDbContext())
             {
-                var deleteHotel = GetHotelById(id);
-                _hotelDbContext.Hotels.Remove(deleteHotel);
-                _hotelDbContext.SaveChanges();
+                var deletehotel = await GetHotelById(id);
+                _hotelDbContext.Hotels.Remove(deletehotel);
+                await _hotelDbContext.SaveChangesAsync();
             }
         }
 
-        public List<Hotel> GetAllHotel()
+        public async Task<List<Hotel>> GetAllHotel()
         {
             using (var _hotelDbContext = new HotelDbContext())
             {
-                return _hotelDbContext.Hotels.ToList();
+                return await _hotelDbContext.Hotels.ToListAsync();
             }
         }
 
-        public Hotel GetHotelByCityName(string cityname)
+        public async Task<Hotel> GetHotelByCityName(string cityname)
         {
             using (var _hotelDbContext = new HotelDbContext())
             {
-                return _hotelDbContext.Hotels.FirstOrDefault(x => x.City.Contains(cityname));
+                return await _hotelDbContext.Hotels.FirstOrDefaultAsync(x => x.City.Contains(cityname));
             }
         }
 
-        public Hotel GetHotelById(int id)
+        public async Task<Hotel> GetHotelById(int id)
         {
             using (var _hotelDbContext = new HotelDbContext())
             {
-                return _hotelDbContext.Hotels.Find(id);
+                return await _hotelDbContext.Hotels.FindAsync(id);
             }
         }
 
-        public Hotel GetHotelByName(string name)
+        public async Task<Hotel> GetHotelByName(string name)
         {
             using (var _hotelDbContext = new HotelDbContext())
             {
-                return _hotelDbContext.Hotels.FirstOrDefault(x => x.Name.Contains(name));
+                return await _hotelDbContext.Hotels.FirstOrDefaultAsync(x => x.Name.Contains(name));
             }
         }
 
-        public Hotel UpdateHotel(Hotel hotel)
+        public async Task<Hotel> UpdateHotel(Hotel hotel)
         {
             using (var _hotelDbContext = new HotelDbContext())
             {
                 _hotelDbContext.Hotels.Update(hotel);
-                _hotelDbContext.SaveChanges();
+                await _hotelDbContext.SaveChangesAsync();
                 return hotel;
             }
         }

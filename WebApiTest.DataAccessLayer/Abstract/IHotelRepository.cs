@@ -4,12 +4,12 @@ namespace WebApiTest.DataAccessLayer.Abstract
 {
     public interface IHotelRepository
     {
-        List<Hotel> GetAllHotel();
-        Hotel GetHotelById(int id);
-        Hotel GetHotelByName(string name);
-        Hotel GetHotelByCityName(string cityname);
-        Hotel CreateHotel(Hotel hotel);
-        Hotel UpdateHotel(Hotel hotel);
-        void DeleteHotel(int id);
+        Task<List<Hotel>> GetAllHotel();
+        Task<Hotel> GetHotelById(int id);
+        Task<Hotel> GetHotelByName(string name);
+        Task<Hotel> GetHotelByCityName(string cityname);
+        Task<Hotel> CreateHotel(Hotel hotel);
+        Task<Hotel> UpdateHotel(Hotel hotel);
+        Task DeleteHotel(int id);
     }
 }

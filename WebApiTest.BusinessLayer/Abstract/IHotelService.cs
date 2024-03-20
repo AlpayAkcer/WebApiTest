@@ -4,12 +4,12 @@ namespace WebApiTest.BusinessLayer.Abstract
 {
     public interface IHotelService
     {
-        List<Hotel> TGetAllHotel();
-        Hotel TGetHotelById(int id);
-        Hotel TGetHotelByName(string name);
-        Hotel TGetHotelByCityName(string cityname);
-        Hotel TCreateHotel(Hotel hotel);
-        Hotel TUpdateHotel(Hotel hotel);
-        void TDeleteHotel(int id);
+        Task<List<Hotel>> TGetAllHotel();
+        Task<Hotel> TGetHotelById(int id);
+        Task<Hotel> TGetHotelByName(string name);
+        Task<Hotel> TGetHotelByCityName(string cityname);
+        Task<Hotel> TCreateHotel(Hotel hotel);
+        Task<Hotel> TUpdateHotel(Hotel hotel);
+        Task TDeleteHotel(int id);
     }
 }

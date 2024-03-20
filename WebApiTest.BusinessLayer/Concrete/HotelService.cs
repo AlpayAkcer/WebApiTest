@@ -13,43 +13,43 @@ namespace WebApiTest.BusinessLayer.Concrete
             _hotelRepository = hotelRepository;
         }
 
-        public Hotel TCreateHotel(Hotel hotel)
+        public async Task<Hotel> TCreateHotel(Hotel hotel)
         {
-            return _hotelRepository.CreateHotel(hotel);
+            return await _hotelRepository.CreateHotel(hotel);
         }
 
-        public void TDeleteHotel(int id)
+        public async Task TDeleteHotel(int id)
         {
-            _hotelRepository.DeleteHotel(id);
+            await _hotelRepository.DeleteHotel(id);
         }
 
-        public List<Hotel> TGetAllHotel()
+        public async Task<List<Hotel>> TGetAllHotel()
         {
-            return _hotelRepository.GetAllHotel();
+            return await _hotelRepository.GetAllHotel();
         }
 
-        public Hotel TGetHotelByCityName(string cityname)
+        public async Task<Hotel> TGetHotelByCityName(string cityname)
         {
-            return _hotelRepository.GetHotelByCityName(cityname);
+            return await _hotelRepository.GetHotelByCityName(cityname);
         }
 
-        public Hotel TGetHotelById(int id)
+        public async Task<Hotel> TGetHotelById(int id)
         {
             if (id > 0)
             {
-                return _hotelRepository.GetHotelById(id);
+                return await _hotelRepository.GetHotelById(id);
             }
             throw new Exception("ID değeri 1den küçük olamaz");
         }
 
-        public Hotel TGetHotelByName(string name)
+        public async Task<Hotel> TGetHotelByName(string name)
         {
-            return _hotelRepository.GetHotelByName(name);
+            return await _hotelRepository.GetHotelByName(name);
         }
 
-        public Hotel TUpdateHotel(Hotel hotel)
+        public async Task<Hotel> TUpdateHotel(Hotel hotel)
         {
-            return _hotelRepository.UpdateHotel(hotel);
+            return await _hotelRepository.UpdateHotel(hotel);
         }
     }
 }
