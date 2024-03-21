@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTest.Entities", "WebApiTest.Entities\WebApiTest.Entities.csproj", "{940D1A97-19C8-4D75-961F-541122C13BED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTest.Entities", "WebApiTest.Entities\WebApiTest.Entities.csproj", "{940D1A97-19C8-4D75-961F-541122C13BED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTest.DataAccessLayer", "WebApiTest.DataAccessLayer\WebApiTest.DataAccessLayer.csproj", "{7D7B9EFE-549D-4803-BAEC-219206BCFB52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTest.DataAccessLayer", "WebApiTest.DataAccessLayer\WebApiTest.DataAccessLayer.csproj", "{7D7B9EFE-549D-4803-BAEC-219206BCFB52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTest.BusinessLayer", "WebApiTest.BusinessLayer\WebApiTest.BusinessLayer.csproj", "{2769CFEC-B03A-4308-9D46-D76D656DDD4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTest.BusinessLayer", "WebApiTest.BusinessLayer\WebApiTest.BusinessLayer.csproj", "{2769CFEC-B03A-4308-9D46-D76D656DDD4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTest.RestApi", "WebApiTest.RestApi\WebApiTest.RestApi.csproj", "{B37E07E7-78E8-429F-AA2F-63D0505E64BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTest.RestApi", "WebApiTest.RestApi\WebApiTest.RestApi.csproj", "{B37E07E7-78E8-429F-AA2F-63D0505E64BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTest.Dto", "WebApiTest.Dto\WebApiTest.Dto.csproj", "{2A36EDEA-78B3-477F-81D5-5FE1039FF4F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B37E07E7-78E8-429F-AA2F-63D0505E64BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B37E07E7-78E8-429F-AA2F-63D0505E64BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B37E07E7-78E8-429F-AA2F-63D0505E64BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A36EDEA-78B3-477F-81D5-5FE1039FF4F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A36EDEA-78B3-477F-81D5-5FE1039FF4F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A36EDEA-78B3-477F-81D5-5FE1039FF4F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A36EDEA-78B3-477F-81D5-5FE1039FF4F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
