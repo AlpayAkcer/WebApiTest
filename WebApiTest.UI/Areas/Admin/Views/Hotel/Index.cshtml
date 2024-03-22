@@ -1,0 +1,29 @@
+﻿@model List<WebApiTest.Dto.HotelDto.HotelListDto>
+@{
+    ViewData["Title"] = "Index";
+    int count = 0;
+}
+
+<h1>Index</h1>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>City</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@item.Name</td>
+                <td>@item.City</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

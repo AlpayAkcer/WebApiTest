@@ -1,10 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System;
 using System.Text;
 using WebApiTest.BusinessLayer.Abstract;
 using WebApiTest.BusinessLayer.Concrete;
@@ -13,7 +10,20 @@ using WebApiTest.DataAccessLayer.Abstract;
 using WebApiTest.DataAccessLayer.Concrete;
 using WebApiTest.Entities;
 
+//var MyAllowSpesificOrigin = "_myAllowSpesificOrigin";
+
 var builder = WebApplication.CreateBuilder(args);
+
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy(MyAllowSpesificOrigin, policy =>
+//    {
+//        policy.WithOrigins("http://localhost:5262/")
+//        .AllowAnyHeader()
+//        .AllowAnyMethod();
+//    });
+//});
+
 
 // Add services to the container.
 builder.Services.AddDbContext<HotelDbContext>();
@@ -45,14 +55,15 @@ builder.Services.AddAuthentication(x =>
 }).AddJwtBearer(x =>
 {
     x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
     x.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = true,
-        ValidateAudience = false,
-
+        ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration.GetSection("AppSettings:Secret").Value ?? "")),
-        ValidateLifetime = true
+        ValidateIssuer = false,
+        ValidateAudience = false
+
     };
 });
 
@@ -97,9 +108,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseAuthentication();
-app.UseAuthorization();
 
+
+app.UseAuthentication();
+
+app.UseRouting();
+//app.UseCors(MyAllowSpesificOrigin);
+
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();

@@ -48,42 +48,8 @@ namespace WebApiTest.RestApi.Controllers
         }
 
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login(UserLoginDto userLoginDto)
-        {
+        
 
-            var user = await _userManager.FindByEmailAsync(userLoginDto.Email);
-            if (user == null)
-            {
-                return BadRequest(new { message = "Email & Password hatalı" });
-            }
-            var result = await _signInManager.CheckPasswordSignInAsync(user, userLoginDto.Password, false);
-            if (result.Succeeded)
-            {
-                return Ok(
-                    new { token = GenerateJsonWebToken(user) } //Json token için kütüphane yüklenmeli
-                    );
-            }
-            return BadRequest(); // Yetkisiz erişim veya bad request gönderileilir
-        }
-
-        private object GenerateJsonWebToken(AppUser user)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_configuration.GetSection("AppSettings:Secret").Value ?? "");
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(
-                    new Claim[] {
-                        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                        new Claim(ClaimTypes.Name, user.Email ?? ""),
-                    }
-                    ),
-                Expires = DateTime.UtcNow.AddDays(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
-        }
+        
     }
 }

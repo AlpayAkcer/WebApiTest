@@ -7,6 +7,7 @@ namespace WebApiTest.RestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class HotelController : ControllerBase
     {
         private IHotelService _hotelService;
@@ -17,7 +18,7 @@ namespace WebApiTest.RestApi.Controllers
         }
 
         [HttpGet]
-        [Route("[action]")]       
+        [Route("[action]")]
         public async Task<IActionResult> GetHotel()
         {
             var hotels = await _hotelService.TGetAllHotel();
@@ -38,7 +39,7 @@ namespace WebApiTest.RestApi.Controllers
 
         [HttpGet]
         [Route("[action]/{name}")]
-        [Authorize]
+
         public async Task<IActionResult> GetHotelByName(string name)
         {
             var hotel = await _hotelService.TGetHotelByName(name);
@@ -51,7 +52,6 @@ namespace WebApiTest.RestApi.Controllers
 
         [HttpGet]
         [Route("[action]/{cityname}")]
-        [Authorize]
         public async Task<IActionResult> GetHotelByCityName(string cityname)
         {
             var hotel = await _hotelService.TGetHotelByCityName(cityname);
